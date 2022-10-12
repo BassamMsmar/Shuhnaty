@@ -20,3 +20,8 @@ def add_company(request):
         company_form = AddCompanyForm()
     return render(request, 'companies/company-add_edit.html',{'company_form':company_form})
 
+
+
+
+
+

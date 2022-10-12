@@ -4,6 +4,7 @@ from django.db import models
 
 class AddCompanyModel(models.Model):
     company_name = models.CharField(max_length=225,  help_text='اسم الشركة')
+    company_id = models.BigAutoField(primary_key=True)
     company_city = models.CharField(max_length=225,  help_text='مقر الشركة')
     charging_area = models.CharField( max_length=225, help_text='منطقة الشحن ')
     

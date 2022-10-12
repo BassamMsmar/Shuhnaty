@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 
 def home(request):
-    return redirect('login')
+    return redirect('shipments_list')
 
 
 
@@ -34,4 +34,5 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('', include('drivers.urls')),
     path('', include('companies.urls')),
+    path('', include('shipments.urls')),
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

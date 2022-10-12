@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'drivers',
     'companies',
+    'shipments',
 ]
 
 MIDDLEWARE = [
@@ -102,8 +103,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-LOGIN_REDIRECT_URL = 'driver_list'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'shipments_list'
+LOGOUT_REDIRECT_URL = 'login'
 
 
 # Internationalization
