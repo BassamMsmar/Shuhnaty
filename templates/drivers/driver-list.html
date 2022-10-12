@@ -1,6 +1,13 @@
 {% extends 'base.html'  %}
 
 {% block content %}
+    <div class="container m-5">
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-outline-primary"><a class="nav-link mx-2 d-inline" href="{% url 'add_driver'%}">Add Driver</a></button>
+      
+        </div>
+    </div>
+
 <div class="container">
     <ul>
         {% for driver in drivers %}
@@ -10,14 +17,11 @@
                   <div class="col border"> {{ driver.driver_name }}</div>
                   <div class="col border"> {{ driver.driver_phone_number }}</div>
                   <div class="col border">{{ driver.truck_plate_number }}</div>
+                </div>
             </div>
         </li>
         {% endfor %}
     </ul>
 </div>
-
-    
-
-
 
 {% endblock %}

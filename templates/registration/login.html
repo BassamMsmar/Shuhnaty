@@ -1,13 +1,24 @@
 {% extends 'base.html'  %}
 
 {% block content %}
+{% if user.is_authenticated %}
+    <section>
+        <div class="form">
+            <h1 class="section-headline">Hi  {{ user.username  | capfirst }}</h1>
+            <p>Thank you for using Shuhnaty</p>
+        </div>
+    </section>
 
-<div class="">
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-</div>
+{% else %}
+    <div class="form">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    </div>
+{% endif %}
+
+
 
 {% endblock %}
