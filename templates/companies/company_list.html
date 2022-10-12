@@ -1,0 +1,27 @@
+{% extends 'base.html'  %}
+
+{% block content %}
+    <div class="container m-5">
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-outline-primary"><a class="nav-link mx-2 d-inline" href="{% url 'add_company'%}">Add company</a></button>
+      
+        </div>
+    </div>
+
+<div class="container">
+    <ul>
+        {% for company in companies %}
+        <li>
+            <div class="container text-center ">
+                <div class="row ">
+                  <div class="col border"> {{ company.company_name}}</div>
+                  <div class="col border"> {{ company.company_city}}</div>
+                  <div class="col border"> {{ company.charging_area }}</div>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

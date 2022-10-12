@@ -33,4 +33,5 @@ urlpatterns = [
     path('',home, name='home'),
     path('', include('accounts.urls')),
     path('', include('drivers.urls')),
+    path('', include('companies.urls')),
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
