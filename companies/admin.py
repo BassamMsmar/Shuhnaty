@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AddCompanyModel
+from .models import CompanyModel
 
 # Register your models here.
-admin.site.register(AddCompanyModel)
+admin.site.register(CompanyModel)

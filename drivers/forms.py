@@ -1,7 +1,7 @@
 from django import forms
-from .models import AddDriverModel
+from .models import DriverModel
 
 class AddDriverForm(forms.ModelForm):
     class Meta:
-        model = AddDriverModel
+        model = DriverModel
         fields = ("__all__")

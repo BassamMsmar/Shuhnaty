@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class AddDriverModel(models.Model):
+class DriverModel(models.Model):
     driver_id = models.BigAutoField(primary_key=True)
     driver_name = models.CharField(max_length=225,  help_text='اسم السائق')
     driver_nationality = models.CharField(max_length=225,  help_text='جنسية السائق')

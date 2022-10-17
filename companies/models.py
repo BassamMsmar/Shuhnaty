@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class AddCompanyModel(models.Model):
+class CompanyModel(models.Model):
     company_name = models.CharField(max_length=225,  help_text='اسم الشركة')
     company_id = models.BigAutoField(primary_key=True)
     company_city = models.CharField(max_length=225,  help_text='مقر الشركة')

@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container m-5">
         <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-outline-primary"><a class="nav-link mx-2 d-inline" href="{% url 'add_company'%}">Add Shipment</a></button>
+            <button type="button" class="btn btn-outline-primary"><a class="nav-link mx-2 d-inline" href="{% url 'shipments_add'%}">Add Shipment</a></button>
       
         </div>
     </div>
@@ -14,7 +14,12 @@
         <li>
             <div class="container text-center ">
                 <div class="row ">
-                  <div class="col border"> {{ shipmen.driver.driver_name}}</div>
+                    <div class="col border">
+                       <a href="{% url 'shipments_details' pk=shipmen.Shipment_id %}">{{ shipmen.Shipment_id  }}</a>
+                    </div>
+                  <div class="col border">
+                     <a href="{% url 'driver_details' shipmen.driver.pk %}">{{ shipmen.driver.driver_name}}</a>
+                  </div>
                   <div class="col border"> 
                         <ul>
                             {% for item in shipmen.company.all %}

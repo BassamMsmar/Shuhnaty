@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AddDriverModel
+from .models import DriverModel
 
 # Register your models here.
-admin.site.register( AddDriverModel)
+admin.site.register( DriverModel)

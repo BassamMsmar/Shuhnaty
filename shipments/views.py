@@ -1,8 +1,50 @@
-from django.shortcuts import render
-from .models import AddShipmentModel
+from multiprocessing import context
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import ShipmentModel
+from .forms import shipmentsForm
 
 # Create your views here.
 def shipments_list(request):
-    shipmens = AddShipmentModel.objects.all()
+    shipmens = ShipmentModel.objects.all()
+    context = {
+        'shipmens':shipmens,
+    }
+    return render(request, 'shipments/shipments-list.html',context)
 
-    return render(request, 'shipments/shipments-list.html',{'shipmens':shipmens})
+
+def shipments_details(request, pk):
+    shipment = get_object_or_404(ShipmentModel ,pk=pk)
+
+    return render(request, 'shipments/shipments-details.html',{'shipment':shipment})
+
+
+def shipments_delete(request, pk):
+    shipmens = ShipmentModel.objects.get(pk=pk)
+    shipmens.delete()
+    return redirect('shipments_list')
+
+
+def shipments_add(request):
+    if request.method == 'POST':
+        form = shipmentsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('shipments_list')
+    else:
+         form = shipmentsForm()
+
+    return render(request, 'shipments/shipments-add.html',{'form':form})
+
+
+def shipments_edit(request, pk):
+    shipmens = ShipmentModel.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = shipmentsForm(request.POST, instance=shipmens)
+        if form.is_valid():
+            form.save()
+            return redirect('shipments_list')
+    else:
+         form = shipmentsForm(instance=shipmens)
+
+    return render(request, 'shipments/shipments-add.html',{'form':form})
+

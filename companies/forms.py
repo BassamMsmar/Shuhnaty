@@ -1,8 +1,8 @@
 from django import forms
-from .models import AddCompanyModel
+from .models import CompanyModel
 
 
 class AddCompanyForm(forms.ModelForm):
     class Meta:
-        model = AddCompanyModel
+        model = CompanyModel
         fields = ("__all__")
