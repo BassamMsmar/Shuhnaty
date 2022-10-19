@@ -1,5 +1,7 @@
 from django.shortcuts import render
+
 from .forms import SingUpForm
+
 
 # Create your views here.
 def signup(request):

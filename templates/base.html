@@ -34,9 +34,11 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link active" aria-current="page" href="{% url 'home'%}">Home</a>
+              {% if user.is_superuser %}
               <a class="nav-link" href="http://127.0.0.1:8000/admin/">admin</a>
-              <a class="nav-link" href="{% url 'driver_list'%}">Driver</a>
               <a class="nav-link" href="{% url 'company_list'%}">companies</a>
+              {% endif %}
+              <a class="nav-link" href="{% url 'driver_list'%}">Driver</a>
               <a class="nav-link" href="{% url 'shipments_list'%}">shipments</a>
             </div>
         </div>

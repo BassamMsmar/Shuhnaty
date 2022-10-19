@@ -1,10 +1,8 @@
+from django.contrib.auth import views as auth_views
 from django.shortcuts import render
 from django.urls import path
-from django.contrib.auth import views as auth_views
+
 from .views import signup
-
-
-    
 
 urlpatterns = [
     path('accounts/signup/', signup, name='signup'),

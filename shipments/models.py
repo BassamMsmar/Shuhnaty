@@ -1,11 +1,12 @@
 from datetime import date
 from email.policy import default
+
 from django.db import models
 from django.utils import timezone
 
-from drivers.models import DriverModel
-from companies.models import CompanyModel
 from accounts.forms import User
+from companies.models import CompanyModel
+from drivers.models import DriverModel
 
 # Create your models here.
 
@@ -14,7 +15,7 @@ class ShipmentModel(models.Model):
     driver = models.ForeignKey(DriverModel, on_delete=models.CASCADE)
     company = models.ManyToManyField(CompanyModel)
     destination =  models.CharField(max_length=225,  help_text=' الوجهة')
-    source =  models.CharField(max_length=225,  help_text=' المصدر')
+    source =  models.CharField(max_length=225,  default='' , help_text=' المصدر')
     amount =  models.CharField(max_length=225,  help_text=' الاجرة')
     employee =  models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now)

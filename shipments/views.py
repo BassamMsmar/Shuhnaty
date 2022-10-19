@@ -1,7 +1,8 @@
-from multiprocessing import context
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import ShipmentModel
+from django.shortcuts import get_object_or_404, redirect, render
+
 from .forms import shipmentsForm
+from .models import ShipmentModel
+
 
 # Create your views here.
 def shipments_list(request):
