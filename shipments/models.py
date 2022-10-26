@@ -36,3 +36,7 @@ class ShipmentModel(models.Model):
         return self.driver.driver_name
 
 
+
+        #000
+
+
