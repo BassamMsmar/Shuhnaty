@@ -13,7 +13,7 @@ from drivers.models import DriverModel
 class ShipmentModel(models.Model):
     Shipment_id = models.BigAutoField(primary_key=True)
     driver = models.ForeignKey(DriverModel, on_delete=models.CASCADE)
-    company = models.ManyToManyField(CompanyModel)
+    company = models.ForeignKey(CompanyModel, on_delete=models.CASCADE)
     destination =  models.CharField(max_length=225,  help_text=' الوجهة')
     source =  models.CharField(max_length=225,  default='' , help_text=' المصدر')
     amount =  models.CharField(max_length=225,  help_text=' الاجرة')
@@ -21,7 +21,13 @@ class ShipmentModel(models.Model):
     date = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     delivery_number = models.IntegerField()
-    status = models.CharField(max_length=225,  help_text=' phgm hgapkm')
+    SHIPPING = 'Shipping'
+    DELIVERY = 'Delivery'
+    shipment_status =[
+        (SHIPPING, 'Shipping'),
+        (DELIVERY,'Delivery')
+    ]
+    status = models.CharField(max_length=10, default=SHIPPING, help_text='حالة الشحنة')
 
 
 
