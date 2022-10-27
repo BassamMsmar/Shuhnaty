@@ -37,6 +37,3 @@ class ShipmentModel(models.Model):
 
 
 
-        #000
-
-

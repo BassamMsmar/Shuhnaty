@@ -1,6 +1,6 @@
 {% extends 'base.html'  %}
 
-{% block content %}
+{% block login %}
 {% if user.is_authenticated %}
     <section>
         <div class="form">
@@ -16,6 +16,10 @@
             {{ form.as_p }}
             <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <div>
+                <p>Don't have an account?<a href="{% url 'signup' %}">Signup</a></p>
+                
+            </div>
     </div>
 {% endif %}
 
