@@ -1,9 +1,10 @@
 from django.shortcuts import redirect, render
 
 
-def home(request):
+def index(request):
     if request.user.is_authenticated :
-        return redirect('shipments_list')
+       return render(request,'')
         
     else:
         return redirect('login')
+

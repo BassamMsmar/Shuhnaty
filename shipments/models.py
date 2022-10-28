@@ -23,9 +23,11 @@ class ShipmentModel(models.Model):
     delivery_number = models.IntegerField()
     SHIPPING = 'Shipping'
     DELIVERY = 'Delivery'
+    PAYTRIP = 'Pay_trip'
     shipment_status =[
         (SHIPPING, 'Shipping'),
-        (DELIVERY,'Delivery')
+        (DELIVERY,'Delivery'),
+        (PAYTRIP,'Pay Trip'),
     ]
     status = models.CharField(max_length=10, default=SHIPPING, help_text='حالة الشحنة')
 

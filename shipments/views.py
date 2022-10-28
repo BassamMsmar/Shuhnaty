@@ -6,9 +6,9 @@ from .models import ShipmentModel
 
 # Create your views here.
 def shipments_list(request):
-    shipmens = ShipmentModel.objects.all()
+    shipments = ShipmentModel.objects.all()
     context = {
-        'shipmens':shipmens,
+        'shipments':shipments,
     }
     return render(request, 'shipments/shipments-list.html',context)
 
@@ -49,3 +49,5 @@ def shipments_edit(request, pk):
 
     return render(request, 'shipments/shipments-add.html',{'form':form})
 
+
+    

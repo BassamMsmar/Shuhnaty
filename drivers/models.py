@@ -45,7 +45,7 @@ class DriverModel(models.Model):
     dinah_Reefers= 'dinah_Reefers'
     
    
-    countrys = [
+    Vehicle = [
         (Truck_Reefers, 'Truck_Reefers'),
         (Truck_Flatbed, 'Truck_Flatbed'),
         (Truck_high_sides, 'Truck_high_sides'),
@@ -55,7 +55,7 @@ class DriverModel(models.Model):
         (dinah_Flatbed, 'dinah_Flatbed'),
         (dinah_Reefers, 'dinah_Reefers'),
     ]
-    Vehicle_Type = models.CharField( choices=countrys, default=Truck_Flatbed,
+    Vehicle_Type = models.CharField( choices=Vehicle, default=Truck_Flatbed,
         max_length=30, help_text='نوع السيارة(سطحة - جوانب) ....')
     Sequence_Number = models.CharField(
         max_length=30, help_text='الرقم التسلسلي من الاستمارة')

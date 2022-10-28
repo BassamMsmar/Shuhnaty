@@ -1,29 +1,71 @@
-{% extends 'base.html'  %}
+{% extends 'base.html' %}
+
+
+
+
+
+{% block item %}
+
+<!-- butten add -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    <a href="{% url 'add_driver'%}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Add Driver </a>
+</div>
+
+{% endblock %}
+
+
+
 
 {% block content %}
-    <div class="container m-5">
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-outline-primary"><a class="nav-link mx-2 d-inline" href="{% url 'add_driver'%}">Add Driver</a></button>
-      
+
+<!-- جدول للعرض -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Driver id</th>
+                        <th>Name</th>
+                        <th>Nationality</th>
+                        <th>Phone Number</th>
+                        <th>Ident No. </th>
+                        <th>plate No.</th>
+                        <th>Vehicle Type</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Driver id</th>
+                        <th>Name</th>
+                        <th>Nationality</th>
+                        <th>Phone Number</th>
+                        <th>Ident No. </th>
+                        <th>plate No.</th>
+                        <th>Vehicle Type</th>>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for driver in drivers %}
+                    <tr>
+                        <td>{{ driver.driver_id }} </td>
+                        <td><a href="{% url 'driver_details' driver.pk %}">{{ driver.driver_name }}</a> </td>
+                        <td>{{ driver.driver_nationality }} </td>
+                        <td>{{ driver.driver_phone_number }} </td>
+                        <td>{{ driver.Identification_Number }} </td>
+                        <td>{{ driver.truck_plate_number }} </td>
+                        <td>{{ driver.Vehicle_Type }} </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
         </div>
     </div>
-
-<div class="container">
-    <ul>
-        {% for driver in drivers %}
-        <li>
-            <div class="container text-center ">
-                <div class="row ">
-                    <div class="col border">
-                        <a href="{% url 'driver_details' driver.pk %}">{{ driver.driver_name }}</a>
-                    </div>
-                  <div class="col border"> {{ driver.driver_phone_number }}</div>
-                  <div class="col border">{{ driver.truck_plate_number }}</div>
-                </div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
 </div>
 
 {% endblock %}

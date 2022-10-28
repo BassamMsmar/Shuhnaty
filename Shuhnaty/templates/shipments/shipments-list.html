@@ -1,46 +1,77 @@
-{% extends 'base.html'  %}
+{% extends 'base.html' %}
+
+
+
+{% block item %}
+<!-- butten add -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    <a href="{% url 'shipments_add'%}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Add Shipment </a>
+</div>
+{% endblock %}
 
 {% block content %}
-    <div class="container m-5">
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-outline-primary"><a class="nav-link mx-2 d-inline" href="{% url 'shipments_add'%}">Add Shipment</a></button>
-      
+
+<!-- جدول للعرض -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Shipment No </th>
+                        <th>Source</th>
+                        <th>destination</th>
+                        <th>date</th>
+                        <th>driver</th>
+                        <th>employee</th>
+                        <th>customer</th>
+                        <th>status</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Shipment No </th>
+                        <th>Source</th>
+                        <th>destination</th>
+                        <th>date</th>
+                        <th>driver/th>
+                        <th>employee</th>
+                        <th>customer</th>
+                        <th>status</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for shipmen in shipments %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'shipments_details' pk=shipmen.Shipment_id %}">{{ shipmen.Shipment_id }}</a>
+                        </td>
+                        <td>
+                            <a href="{% url 'company_details' shipmen.company.pk %}">{{ shipmen.company.company_name }}</a>
+                        </td>
+                        <td>{{ shipmen.destination }}</td>
+                        <td>{{ shipmen.date|date:'Y-m-d' }}</td>
+                        <td>
+                            <a href="{% url 'driver_details' shipmen.driver.pk %}">
+                                {{ shipmen.driver.driver_name }}
+                            </a>
+                        </td>
+                        <td>{{ shipmen.employee.username }}</td>
+                        <td>customer </td>
+                        <td>{{ shipmen.status }}</td>
+                    </tr>
+                    {% endfor %}
+
+
+                </tbody>
+            </table>
         </div>
     </div>
-
-<div class="container">
-    <ul>
-        {% for shipmen in shipmens %}
-        <li>
-            <div class="container text-center ">
-                <div class="row ">
-                    <div class="col border">
-                       <a href="{% url 'shipments_details' pk=shipmen.Shipment_id %}">{{ shipmen.Shipment_id  }}</a>
-                    </div>
-                  <div class="col border">
-                     <a href="{% url 'driver_details' shipmen.driver.pk %}">{{ shipmen.driver.driver_name}}</a>
-                  </div>
-                  <div class="col border"> 
-                        <ul>
-                            {% for item in shipmen.company.all %}
-                            <li>
-                                <div class="col border"> {{ item.company_name}}</div>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                  </div>
-                  <div class="col border"> {{ shipmen.destination }}</div>
-                  <div class="col border"> {{ shipmen.source }}</div>
-                  <div class="col border"> {{ shipmen.amount }}</div>
-                  <div class="col border"> {{ shipmen.employee.username }}</div>
-                  <div class="col border"> {{ shipmen.date|date:'Y-m-d' }}</div>
-                  <div class="col border"> {{ shipmen.delivery_number }}</div>
-                  <div class="col border"> {{ shipmen.status }}</div>
-                </div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
 </div>
+
 
 {% endblock %}

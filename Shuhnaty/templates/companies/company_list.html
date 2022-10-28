@@ -1,28 +1,62 @@
-{% extends 'base.html'  %}
+{% extends 'base.html' %}
+
+
+{% block item %}
+
+<!-- butten add -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    <a href="{% url 'add_company'%}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-download fa-sm text-white-50"></i> Add company </a>
+</div>
+
+{% endblock %}
+
+
+
 
 {% block content %}
-    <div class="container m-5">
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-outline-primary"><a class="nav-link mx-2 d-inline" href="{% url 'add_company'%}">Add company</a></button>
-      
+
+<!-- جدول للعرض -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Cmpany id </th>
+                        <th>Name</th>
+                        <th>Company city</th>
+                        <th>Charging area</th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Cmpany id </th>
+                        <th>Name</th>
+                        <th>Company city</th>
+                        <th>Charging area</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for company in companies %}
+                    <tr>
+                        <td>{{ company.company_id }} </td>
+                        <td>
+                            <a href="{% url 'company_details' company.pk%}">{{ company.company_name }}</a></td>
+                        <td>{{ company.company_city }} </td>
+                        <td>{{ company.charging_area}} </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
         </div>
     </div>
-
-<div class="container">
-    <ul>
-        {% for company in companies %}
-        <li>
-            <div class="container text-center ">
-                <div class="row ">
-                  <div class="col border"> <a href="{% url 'company_details' company.pk%}">{{ company.company_name}}</a></div>
-                  <div class="col border"> {{ company.company_city}}</div>
-                  <div class="col border"> {{ company.charging_area }}</div>
-                </div>
-            </div>
-        </li>
-        {% endfor %}
-        
-    </ul>
 </div>
 
 {% endblock %}
