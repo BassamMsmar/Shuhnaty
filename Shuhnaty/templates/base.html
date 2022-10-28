@@ -75,10 +75,11 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Shipments Status:</h6>
-                        <a class="collapse-item" href="#">Shipments on the way</a>
-                        <a class="collapse-item" href="#">Shipments Delivered</a>
-                        <a class="collapse-item" href="#">paid bill</a>
-                        <a class="collapse-item" href="#">invoice in checking</a>
+                        <a class="collapse-item" href="{% url 'shipments_list' %}">All Shipments</a>
+                        <a class="collapse-item" href="{% url 'shipments_filter' status='Shipping' %}">Shipments on the way</a>
+                        <a class="collapse-item" href="{% url 'shipments_filter' status='Delivery' %}">Shipments Delivered</a>
+                        <a class="collapse-item" href="{% url 'shipments_filter' status='Pay Trip' %}">paid bill</a>
+                        <a class="collapse-item" href="{% url 'shipments_filter' status='Done' %}">invoice in checking</a>
                         <a class="collapse-item" href="#">Fulfilled delivery </a>
                     </div>
                 </div>

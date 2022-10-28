@@ -46,24 +46,71 @@
                 </tfoot>
                 <tbody>
                     {% for shipmen in shipments %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'shipments_details' pk=shipmen.Shipment_id %}">{{ shipmen.Shipment_id }}</a>
-                        </td>
-                        <td>
-                            <a href="{% url 'company_details' shipmen.company.pk %}">{{ shipmen.company.company_name }}</a>
-                        </td>
-                        <td>{{ shipmen.destination }}</td>
-                        <td>{{ shipmen.date|date:'Y-m-d' }}</td>
-                        <td>
-                            <a href="{% url 'driver_details' shipmen.driver.pk %}">
-                                {{ shipmen.driver.driver_name }}
-                            </a>
-                        </td>
-                        <td>{{ shipmen.employee.username }}</td>
-                        <td>customer </td>
-                        <td>{{ shipmen.status }}</td>
-                    </tr>
+                        {% if user.is_superuser %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'shipments_details' pk=shipmen.Shipment_id %}">{{ shipmen.Shipment_id }}</a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'company_details' shipmen.company.pk %}">   {{ shipmen.company.company_name }}</a>
+                                </td>
+                                <td>{{ shipmen.destination }}</td>
+                                <td>{{ shipmen.date|date:'Y-m-d' }}</td>
+                                <td>
+                                    <a href="{% url 'driver_details' shipmen.driver.pk %}">
+                                        {{ shipmen.driver.driver_name }}
+                                    </a>
+                                </td>
+                                <td>{{ shipmen.employee.username }}</td>
+                                <td>customer </td>
+                                <td>
+                                {% if shipmen.status  != 'Done' %}
+                                
+                                    <a href="{% url 'shipments_edit_status' status=shipmen.status  pk=shipmen.Shipment_id %}">
+                                    {{ shipmen.status }} 
+                                    </a> 
+
+                                {% else %}
+
+                                        {{ shipmen.status }}  
+
+                                {% endif %}
+                                </td>
+                            </tr>
+                        {% else %}
+                            {% if shipmen.status != 'Done' %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'shipments_details' pk=shipmen.Shipment_id %}">{{ shipmen.Shipment_id }}</a>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'company_details' shipmen.company.pk %}">   {{ shipmen.company.company_name }}</a>
+                                    </td>
+                                    <td>{{ shipmen.destination }}</td>
+                                    <td>{{ shipmen.date|date:'Y-m-d' }}</td>
+                                    <td>
+                                        <a href="{% url 'driver_details' shipmen.driver.pk %}">
+                                            {{ shipmen.driver.driver_name }}
+                                        </a>
+                                    </td>
+                                    <td>{{ shipmen.employee.username }}</td>
+                                    <td>customer </td>
+                                    <td>
+                                    {% if shipmen.status  != 'Done' %}
+                                    
+                                        <a href="{% url 'shipments_edit_status' status=shipmen.status  pk=shipmen.Shipment_id %}">
+                                        {{ shipmen.status }} 
+                                        </a> 
+
+                                    {% else %}
+
+                                            {{ shipmen.status }}  
+
+                                    {% endif %}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endif %}
                     {% endfor %}
 
 

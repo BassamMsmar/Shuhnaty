@@ -6,11 +6,21 @@ from .models import ShipmentModel
 
 # Create your views here.
 def shipments_list(request):
+
     shipments = ShipmentModel.objects.all()
     context = {
         'shipments':shipments,
     }
     return render(request, 'shipments/shipments-list.html',context)
+
+def shipments_filter(request, status):
+    shipments = ShipmentModel.objects.filter(status = status)
+    context = {
+        'shipments':shipments,
+    }
+    return render(request, 'shipments/shipments-list.html',context)
+
+
 
 
 def shipments_details(request, pk):
@@ -50,6 +60,29 @@ def shipments_edit(request, pk):
     return render(request, 'shipments/shipments-add.html',{'form':form})
 
 
+def shipments_edit_status(request, status, pk):
+        status = status
+        if status == 'Shipping':
+            shipmen = ShipmentModel.objects.get(pk=pk)
+            shipmen.status = 'Delivery'
+            shipmen.save()
+            return redirect('shipments_list')
 
+        elif  status == 'Delivery':
+            shipmen = ShipmentModel.objects.get(pk=pk)
+            shipmen.status = 'Pay Trip'
+            shipmen.save()
+            return redirect('shipments_list')
+
+        else:
+            status == 'Pay Trip'
+            shipmen = ShipmentModel.objects.get(pk=pk)
+            shipmen.status = 'Done'
+            shipmen.save()
+            return redirect('shipments_list')
+
+        
+
+     
 
 

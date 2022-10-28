@@ -24,10 +24,12 @@ class ShipmentModel(models.Model):
     SHIPPING = 'Shipping'
     DELIVERY = 'Delivery'
     PAYTRIP = 'Pay_trip'
+    DONE = 'Done'
     shipment_status =[
         (SHIPPING, 'Shipping'),
         (DELIVERY,'Delivery'),
-        (PAYTRIP,'Pay Trip'),
+        (PAYTRIP, 'Pay_trip'),
+        (DONE,'Done'),
     ]
     status = models.CharField(max_length=10, default=SHIPPING, help_text='حالة الشحنة')
 
