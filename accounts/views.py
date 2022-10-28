@@ -12,5 +12,6 @@ def signup(request):
             return render(request, 'registration/signup-successful.html', {'user_form':user_form})
     else:
         user_form = SingUpForm()
-        return render(request, 'registration/signup.html', {'user_form':user_form})
+
+    return render(request, 'registration/signup.html', {'user_form':user_form})
 

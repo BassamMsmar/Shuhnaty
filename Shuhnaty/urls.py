@@ -16,17 +16,22 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import include, path
 
 
 def home(request):
-    return render(request, 'home.html')
+    return redirect('login')
+
+
+def index(request):
+    return render(request, 'index.html')
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home, name='home'),
+    path('index/',index, name='index'),
     path('', include('accounts.urls')),
     path('', include('drivers.urls')),
     path('', include('companies.urls')),
