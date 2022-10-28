@@ -1,61 +1,59 @@
-{% extends 'base.html'  %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="form">
-    <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ user_form.as_p }}
-    <input class="submit-btn" type="submit">
-    </form>
-</div>
+{% if user.is_authenticated %}
+<section>
+    <div class="form">
+        <h1 class="section-headline">Hi {{ user.username | capfirst }}</h1>
+        <p>Thank you for using Shuhnaty</p>
+    </div>
+</section>
 
+{% else %}
+<div class="container">
 
-<!-- <div class="form ">
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <label for="basic-url" class="form-label">Phone Number</label>
-        <div class="input-group flex-nowrap ">
-            <span class="input-group-text" id="addon-wrapping">966</span>
-            <input type="number" class="form-control" placeholder="5X XXXX XXXX" aria-label="number_phone"
-                aria-describedby="addon-wrapping" id="number_phone" name="number_phone">
-        </div>
-        <div>
-            <label for="inputPassword5" class="form-label">Password</label>
-            <input type="password" id="password1" name="password2" class="form-control"
-                aria-describedby="passwordHelpBlock">
-            <div id="passwordHelpBlock" class="form-text">
-                <ul>
-                    <li>
-                        Your password can’t be too similar to your other personal information.
-                    </li>
-                    <li>
-                        Your password must contain at least 8 characters.
-                    </li>
-                    <li>
-                        Your password can’t be a commonly used password.
-                    </li>
-                    <li>
-                        Your password can’t be entirely numeric.
-                    </li>
-                </ul>
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image">
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                </div>
+                                <form class="user form" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ user_form.as_p }}
+
+                            
+
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">signup</button>
+
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="{% url 'login'%}">I have account ? Login</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
-        <div>
-            <label for="inputPassword5" class="form-label">Password confirmation:</label>
-            <input type="password" id="password2" name="password2" class="form-control"
-                aria-describedby="passwordHelpBlock">
-        </div>
-        <label for="basic-url" class="form-label">Username</label>
-        <div class="input-group flex-nowrap ">
-            <span class="input-group-text" id="addon-wrapping">@</span>
-            <input type="text" class="form-control" placeholder="" aria-label="number_phone"
-                aria-describedby="addon-wrapping" id="username" name="username">  
-        </div>
-        <div id="passwordHelpBlock" class="form-text">
-            English characters only, must not contain spaces or @#%
-        </div>
-        <input class="submit-btn" type="submit">
-    </form>
-</div -->
+
+    </div>
+
+</div>
+{% endif %}
+
 
 {% endblock %}

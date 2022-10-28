@@ -50,4 +50,6 @@ def shipments_edit(request, pk):
     return render(request, 'shipments/shipments-add.html',{'form':form})
 
 
-    
+
+
+
