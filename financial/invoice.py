@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from datetime import datetime
 
 from .models import Invoices
 from .models import  CatchReceipt
 from .forms import AddInvoices
-
 
 
 def invoice_list(request):
@@ -24,25 +22,15 @@ def invoice_details(request, pk):
         })
 
 def add_invoice(request):
+    if request.method == 'POST':
+        invoice_form = AddInvoices(request.POST, request.FILES)
+        if invoice_form.is_valid():
+            invoice_form.save()
+            return redirect('invoice_list')
+    else:
+        invoice_form = AddInvoices()
 
-    invoice = Invoices()
-    invoice.date = datetime.now()
-    invoice.auth = request.user.username
-    invoice.status = 'avtive'
-    invoice.save()
-    return redirect('invoice_list')
-
-
-
-    # if request.method == 'POST':
-    #     invoice_form = AddInvoices(request.POST, request.FILES)
-    #     if invoice_form.is_valid():
-    #         invoice_form.save()
-    #         return redirect('invoice_list')
-    # else:
-    #     invoice_form = AddInvoices()
-
-    # return render(request, 'financial/invoice/invoice_add_edit.html',{'invoice_form':invoice_form})
+    return render(request, 'financial/invoice/invoice_add_edit.html',{'invoice_form':invoice_form})
 
 
 def edit_invoicet(request, pk):
